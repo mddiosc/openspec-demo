@@ -1,0 +1,46 @@
+schema: spec-driven
+
+context: |
+  Project: Open Library Books Explorer
+  Description: Web app to search books, view covers and details using the Open Library public API.
+
+  Tech stack:
+    - React 19 with hooks
+    - TypeScript 5.9
+    - Vite 8
+    - react-router-dom v7 (client-side routing)
+    - @tanstack/react-query v5 (server state, caching, loading/error states)
+    - zustand (global client state: search query, filters)
+    - zod (schema validation)
+    - openapi-zod-client (auto-generated typed API client from OpenAPI spec)
+
+  API:
+    - Base URL: https://openlibrary.org
+    - Search endpoint: GET /search.json?q=&fields=key,title,author_name,cover_i,first_publish_year,edition_count
+    - Work detail: GET /works/{id}.json
+    - Author detail: GET /authors/{id}.json
+    - Covers: https://covers.openlibrary.org/b/id/{cover_id}-M.jpg
+    - Rate limit: 1 req/s (browsers cannot set custom User-Agent header — limit applies)
+
+  Project structure:
+    src/
+      api/          # generated client + zod schemas
+      components/   # reusable UI components
+      pages/        # route-level components (SearchPage, BookDetailPage)
+      hooks/        # custom react-query hooks
+      store/        # zustand stores
+      types/        # shared TypeScript types
+
+  Conventions:
+    - Conventional commits (feat, fix, chore, refactor, docs)
+    - Named exports only (no default exports except pages)
+    - CSS Modules for styles
+    - No UI component libraries, plain CSS
+    - Prefer composition over inheritance
+    - All async operations go through react-query (no raw useEffect for data fetching)
+
+  Non-goals:
+    - Authentication / user accounts
+    - Favorites or reading lists
+    - Mobile-first (responsive but desktop-first)
+    - i18n

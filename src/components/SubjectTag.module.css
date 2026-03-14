@@ -1,0 +1,10 @@
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #4f46e5;
+  background-color: #eef2ff;
+  border-radius: 9999px;
+  white-space: nowrap;
+}

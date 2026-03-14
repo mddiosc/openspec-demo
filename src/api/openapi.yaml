@@ -1,0 +1,293 @@
+openapi: "3.0.3"
+info:
+  title: Open Library API
+  version: "1.0.0"
+  description: Public API for Open Library (openlibrary.org)
+
+servers:
+  - url: https://openlibrary.org
+
+paths:
+  /search.json:
+    get:
+      operationId: searchBooks
+      summary: Search books
+      parameters:
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Full-text search query
+        - name: title
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: author
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Comma-separated list of fields to return
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [relevance, new, old, random]
+      responses:
+        "200":
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SearchResponse"
+
+  /works/{workId}.json:
+    get:
+      operationId: getWork
+      summary: Get work details
+      parameters:
+        - name: workId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Open Library work ID (e.g. OL45883W)
+      responses:
+        "200":
+          description: Work details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Work"
+
+  /authors/{authorId}.json:
+    get:
+      operationId: getAuthor
+      summary: Get author details
+      parameters:
+        - name: authorId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Open Library author ID (e.g. OL23919A)
+      responses:
+        "200":
+          description: Author details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Author"
+
+  /subjects/{subject}.json:
+    get:
+      operationId: getSubject
+      summary: Get books by subject
+      parameters:
+        - name: subject
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+      responses:
+        "200":
+          description: Subject with books
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SubjectResponse"
+
+components:
+  schemas:
+    SearchDoc:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Work key, e.g. /works/OL45883W
+        title:
+          type: string
+        author_name:
+          type: array
+          items:
+            type: string
+        author_key:
+          type: array
+          items:
+            type: string
+        cover_i:
+          type: integer
+          nullable: true
+        first_publish_year:
+          type: integer
+          nullable: true
+        edition_count:
+          type: integer
+          nullable: true
+        subject:
+          type: array
+          items:
+            type: string
+        isbn:
+          type: array
+          items:
+            type: string
+
+    SearchResponse:
+      type: object
+      required: [numFound, start, docs]
+      properties:
+        numFound:
+          type: integer
+        start:
+          type: integer
+        numFoundExact:
+          type: boolean
+        docs:
+          type: array
+          items:
+            $ref: "#/components/schemas/SearchDoc"
+
+    OLRef:
+      type: object
+      required: [key]
+      properties:
+        key:
+          type: string
+
+    TextValue:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+
+    Work:
+      type: object
+      properties:
+        key:
+          type: string
+        title:
+          type: string
+        description:
+          oneOf:
+            - type: string
+            - $ref: "#/components/schemas/TextValue"
+          nullable: true
+        covers:
+          type: array
+          items:
+            type: integer
+          nullable: true
+        subjects:
+          type: array
+          items:
+            type: string
+          nullable: true
+        authors:
+          type: array
+          items:
+            type: object
+            properties:
+              author:
+                $ref: "#/components/schemas/OLRef"
+              type:
+                $ref: "#/components/schemas/OLRef"
+          nullable: true
+        first_publish_date:
+          type: string
+          nullable: true
+
+    Author:
+      type: object
+      properties:
+        key:
+          type: string
+        name:
+          type: string
+        bio:
+          oneOf:
+            - type: string
+            - $ref: "#/components/schemas/TextValue"
+          nullable: true
+        birth_date:
+          type: string
+          nullable: true
+        death_date:
+          type: string
+          nullable: true
+        photos:
+          type: array
+          items:
+            type: integer
+          nullable: true
+
+    SubjectBook:
+      type: object
+      properties:
+        key:
+          type: string
+        title:
+          type: string
+        authors:
+          type: array
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+              name:
+                type: string
+        cover_id:
+          type: integer
+          nullable: true
+        first_publish_year:
+          type: integer
+          nullable: true
+
+    SubjectResponse:
+      type: object
+      properties:
+        key:
+          type: string
+        name:
+          type: string
+        work_count:
+          type: integer
+        works:
+          type: array
+          items:
+            $ref: "#/components/schemas/SubjectBook"
