@@ -1,0 +1,55 @@
+.page {
+  min-height: 100vh;
+  background-color: #f9fafb;
+  padding: 2rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: #4f46e5;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
+.header {
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 0.4rem;
+  text-transform: capitalize;
+}
+
+.count {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.status {
+  color: #6b7280;
+  font-size: 1rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.error {
+  color: #dc2626;
+  font-size: 1rem;
+  margin: 0 0 1rem;
+}

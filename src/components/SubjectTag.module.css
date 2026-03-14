@@ -7,4 +7,11 @@
   background-color: #eef2ff;
   border-radius: 9999px;
   white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.tag:hover {
+  background-color: #4f46e5;
+  color: #fff;
 }
