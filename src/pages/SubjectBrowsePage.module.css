@@ -41,6 +41,26 @@
   margin: 0;
 }
 
+.countSkeleton {
+  width: 120px;
+  height: 0.875rem;
+  background-color: #e5e7eb;
+  border-radius: 4px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeletonGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.25rem;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
 .status {
   color: #6b7280;
   font-size: 1rem;

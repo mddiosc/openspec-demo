@@ -1,6 +1,7 @@
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useSubjectBooks } from '../hooks/useSubjectBooks'
 import { BookGrid } from '../components/BookGrid'
+import { BookCardSkeleton } from '../components/BookCardSkeleton'
 import type { z } from 'zod'
 import type { schemas } from '../api/client'
 import styles from './SubjectBrowsePage.module.css'
@@ -27,14 +28,6 @@ export default function SubjectBrowsePage() {
 
   const docs = (data?.works ?? []).map(subjectBookToSearchDoc)
 
-  if (isLoading) {
-    return (
-      <main className={styles.page}>
-        <p className={styles.status}>Loading...</p>
-      </main>
-    )
-  }
-
   if (isError) {
     return (
       <main className={styles.page}>
@@ -52,14 +45,22 @@ export default function SubjectBrowsePage() {
 
       <header className={styles.header}>
         <h1 className={styles.title}>{data?.name ?? decodedSubject}</h1>
-        {data?.work_count !== undefined && (
+        {isLoading ? (
+          <div className={styles.countSkeleton} />
+        ) : data?.work_count !== undefined ? (
           <p className={styles.count}>
             {data.work_count.toLocaleString()} works — showing {docs.length}
           </p>
-        )}
+        ) : null}
       </header>
 
-      {docs.length === 0 ? (
+      {isLoading ? (
+        <div className={styles.skeletonGrid} aria-busy="true">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <BookCardSkeleton key={i} />
+          ))}
+        </div>
+      ) : docs.length === 0 ? (
         <p className={styles.status}>No books found for this subject.</p>
       ) : (
         <BookGrid docs={docs} />

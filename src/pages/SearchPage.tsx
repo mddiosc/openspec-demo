@@ -4,6 +4,7 @@ import { SearchInput } from '../components/SearchInput'
 import { BookGrid } from '../components/BookGrid'
 import { LoadMoreButton } from '../components/LoadMoreButton'
 import { SortControl } from '../components/SortControl'
+import { BookCardSkeleton } from '../components/BookCardSkeleton'
 import styles from './SearchPage.module.css'
 
 export default function SearchPage() {
@@ -31,7 +32,11 @@ export default function SearchPage() {
 
       <section className={styles.results}>
         {isLoading && (
-          <p className={styles.status}>Searching...</p>
+          <div className={styles.skeletonGrid} aria-busy="true">
+            {Array.from({ length: 10 }).map((_, i) => (
+              <BookCardSkeleton key={i} />
+            ))}
+          </div>
         )}
 
         {isError && !data && (
@@ -71,7 +76,7 @@ export default function SearchPage() {
           </>
         )}
 
-        {!query && (
+        {!query && !isLoading && (
           <p className={styles.hint}>
             Type a title, author, or topic and press Search.
           </p>
