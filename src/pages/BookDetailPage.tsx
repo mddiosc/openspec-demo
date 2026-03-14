@@ -91,7 +91,12 @@ export default function BookDetailPage() {
               <p className={styles.status}>Loading author...</p>
             ) : author ? (
               <div>
-                <p className={styles.authorName}>{author.name}</p>
+                <Link
+                  to={`/authors/${authorId}`}
+                  className={styles.authorLink}
+                >
+                  {author.name}
+                </Link>
                 {authorBio && (
                   <p className={styles.authorBio}>{authorBio}</p>
                 )}
