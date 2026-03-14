@@ -53,6 +53,24 @@ const Author = z
   })
   .partial()
   .passthrough();
+const AuthorWork = z
+  .object({
+    key: z.string(),
+    title: z.string(),
+    covers: z.array(z.number().int()).nullable(),
+    first_publish_date: z.string().nullable(),
+    description: z.union([z.string(), TextValue]).nullable(),
+  })
+  .partial()
+  .passthrough();
+const AuthorWorksResponse = z
+  .object({
+    links: z.object({}).partial().passthrough().nullable(),
+    size: z.number().int(),
+    entries: z.array(AuthorWork),
+  })
+  .partial()
+  .passthrough();
 const SubjectBook = z
   .object({
     key: z.string(),
@@ -82,6 +100,8 @@ export const schemas = {
   OLRef,
   Work,
   Author,
+  AuthorWork,
+  AuthorWorksResponse,
   SubjectBook,
   SubjectResponse,
 };
@@ -100,6 +120,30 @@ const endpoints = makeApi([
       },
     ],
     response: Author,
+  },
+  {
+    method: "get",
+    path: "/authors/:authorId/works.json",
+    alias: "getAuthorWorks",
+    requestFormat: "json",
+    parameters: [
+      {
+        name: "authorId",
+        type: "Path",
+        schema: z.string(),
+      },
+      {
+        name: "limit",
+        type: "Query",
+        schema: z.number().int().optional().default(50),
+      },
+      {
+        name: "offset",
+        type: "Query",
+        schema: z.number().int().optional().default(0),
+      },
+    ],
+    response: AuthorWorksResponse,
   },
   {
     method: "get",
@@ -147,7 +191,7 @@ const endpoints = makeApi([
   },
   {
     method: "get",
-    path: "/subjects/:subject.json",
+    path: "/subjects/:subject",
     alias: "getSubject",
     requestFormat: "json",
     parameters: [
