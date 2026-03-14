@@ -45,3 +45,18 @@ test('empty query — no API request, hint remains', async ({ page }) => {
   await expect(page.getByText(/Type a title/)).toBeVisible()
   expect(requests).toHaveLength(0)
 })
+
+test('search results show skeletons while loading', async ({ page }) => {
+  await setupApiMocks(page, { delay: 1000 })
+  
+  await page.goto('/')
+  await page.getByRole('searchbox').fill('tolkien')
+  await page.getByRole('button', { name: 'Search' }).click()
+
+  // Skeletons should be visible
+  await expect(page.locator('[aria-busy="true"]')).toBeVisible()
+  
+  // Wait for loading to finish
+  await expect(page.locator('[aria-busy="true"]')).not.toBeVisible()
+  await expect(page.getByText('The Hobbit')).toBeVisible()
+})

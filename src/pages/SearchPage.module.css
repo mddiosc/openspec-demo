@@ -25,6 +25,12 @@
   width: 100%;
 }
 
+.skeletonGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.25rem;
+}
+
 .resultsHeader {
   display: flex;
   align-items: center;

@@ -12,6 +12,7 @@ type MockOverrides = {
   authorResponse?: object
   authorWorksResponse?: object
   subjectResponse?: object
+  delay?: number
 }
 
 export async function setupApiMocks(page: Page, overrides: MockOverrides = {}) {
@@ -23,36 +24,39 @@ export async function setupApiMocks(page: Page, overrides: MockOverrides = {}) {
   const authorTolkienWorks = loadFixture('author-tolkien-works.json')
   const subjectFantasy = loadFixture('subject-fantasy.json')
 
+  const fulfillWithDelay = async (route: any, json: object) => {
+    if (overrides.delay) {
+      await new Promise(f => setTimeout(f, overrides.delay))
+    }
+    return route.fulfill({ json })
+  }
+
   await page.route('https://openlibrary.org/search.json**', (route) => {
     const url = new URL(route.request().url())
     const q = url.searchParams.get('q') ?? ''
     const offset = Number(url.searchParams.get('offset') ?? 0)
 
-    if (overrides.searchResponse) {
-      return route.fulfill({ json: overrides.searchResponse })
-    }
-    if (q.toLowerCase().includes('zzznoresults')) {
-      return route.fulfill({ json: searchEmpty })
-    }
-    if (offset > 0) {
-      return route.fulfill({ json: searchTolkienP2 })
-    }
-    return route.fulfill({ json: searchTolkien })
+    let body = searchTolkien
+    if (overrides.searchResponse) body = overrides.searchResponse
+    else if (q.toLowerCase().includes('zzznoresults')) body = searchEmpty
+    else if (offset > 0) body = searchTolkienP2
+
+    return fulfillWithDelay(route, body)
   })
 
   await page.route('https://openlibrary.org/subjects/**', (route) => {
-    return route.fulfill({ json: overrides.subjectResponse ?? subjectFantasy })
+    return fulfillWithDelay(route, overrides.subjectResponse ?? subjectFantasy)
   })
 
   await page.route('https://openlibrary.org/works/**', (route) => {
-    return route.fulfill({ json: overrides.workResponse ?? workHobbit })
+    return fulfillWithDelay(route, overrides.workResponse ?? workHobbit)
   })
 
   await page.route('https://openlibrary.org/authors/**', (route) => {
     if (route.request().url().includes('/works.json')) {
-      return route.fulfill({ json: overrides.authorWorksResponse ?? authorTolkienWorks })
+      return fulfillWithDelay(route, overrides.authorWorksResponse ?? authorTolkienWorks)
     }
-    return route.fulfill({ json: overrides.authorResponse ?? authorTolkien })
+    return fulfillWithDelay(route, overrides.authorResponse ?? authorTolkien)
   })
 
   // Block cover images to speed up tests
