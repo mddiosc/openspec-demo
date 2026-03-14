@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styles from './SubjectTag.module.css'
 
 interface SubjectTagProps {
@@ -5,5 +6,12 @@ interface SubjectTagProps {
 }
 
 export function SubjectTag({ subject }: SubjectTagProps) {
-  return <span className={styles.tag}>{subject}</span>
+  return (
+    <Link
+      to={`/subjects/${encodeURIComponent(subject)}`}
+      className={styles.tag}
+    >
+      {subject}
+    </Link>
+  )
 }

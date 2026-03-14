@@ -11,6 +11,7 @@ type MockOverrides = {
   workResponse?: object
   authorResponse?: object
   authorWorksResponse?: object
+  subjectResponse?: object
 }
 
 export async function setupApiMocks(page: Page, overrides: MockOverrides = {}) {
@@ -20,6 +21,7 @@ export async function setupApiMocks(page: Page, overrides: MockOverrides = {}) {
   const workHobbit = loadFixture('work-hobbit.json')
   const authorTolkien = loadFixture('author-tolkien.json')
   const authorTolkienWorks = loadFixture('author-tolkien-works.json')
+  const subjectFantasy = loadFixture('subject-fantasy.json')
 
   await page.route('https://openlibrary.org/search.json**', (route) => {
     const url = new URL(route.request().url())
@@ -38,11 +40,14 @@ export async function setupApiMocks(page: Page, overrides: MockOverrides = {}) {
     return route.fulfill({ json: searchTolkien })
   })
 
+  await page.route('https://openlibrary.org/subjects/**', (route) => {
+    return route.fulfill({ json: overrides.subjectResponse ?? subjectFantasy })
+  })
+
   await page.route('https://openlibrary.org/works/**', (route) => {
     return route.fulfill({ json: overrides.workResponse ?? workHobbit })
   })
 
-  // Register works before authors — Playwright uses last-registered route first
   await page.route('https://openlibrary.org/authors/**', (route) => {
     if (route.request().url().includes('/works.json')) {
       return route.fulfill({ json: overrides.authorWorksResponse ?? authorTolkienWorks })

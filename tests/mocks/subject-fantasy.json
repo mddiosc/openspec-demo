@@ -1,0 +1,24 @@
+{
+  "key": "/subjects/fantasy",
+  "name": "fantasy",
+  "subject_type": "subject",
+  "work_count": 14328,
+  "works": [
+    {
+      "key": "/works/OL27482W",
+      "title": "The Hobbit",
+      "authors": [{ "key": "/authors/OL26320A", "name": "J.R.R. Tolkien" }],
+      "cover_id": 14627509,
+      "cover_edition_key": null,
+      "first_publish_year": 1937
+    },
+    {
+      "key": "/works/OL52W",
+      "title": "Alice's Adventures in Wonderland",
+      "authors": [{ "key": "/authors/OL22098A", "name": "Lewis Carroll" }],
+      "cover_id": null,
+      "cover_edition_key": null,
+      "first_publish_year": 1865
+    }
+  ]
+}
