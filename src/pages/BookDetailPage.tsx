@@ -3,7 +3,12 @@ import { useWorkDetail } from '../hooks/useWorkDetail'
 import { useAuthorDetail } from '../hooks/useAuthorDetail'
 import { SubjectTag } from '../components/SubjectTag'
 import { Skeleton } from '../components/Skeleton'
+import { FavoriteButton } from '../components/FavoriteButton'
+import type { z } from 'zod'
+import type { schemas } from '../api/client'
 import styles from './BookDetailPage.module.css'
+
+type SearchDoc = z.infer<typeof schemas.SearchDoc>
 
 function getDescription(
   desc: string | { type?: string; value?: string } | null | undefined
@@ -64,6 +69,15 @@ export default function BookDetailPage() {
   const description = getDescription(work?.description)
   const authorBio = getDescription(author?.bio)
 
+  // Adapter to pass work data to FavoriteButton
+  const searchDoc: SearchDoc | null = work ? {
+    key: work.key ?? `/works/${workId}`,
+    title: work.title ?? '',
+    author_name: author ? [author.name ?? ''] : [],
+    cover_i: work.covers?.[0] ?? null,
+    first_publish_year: work.first_publish_date ? parseInt(work.first_publish_date) : null,
+  } : null
+
   if (workError) {
     return (
       <main className={styles.page}>
@@ -96,7 +110,10 @@ export default function BookDetailPage() {
 
           {/* Info */}
           <div className={styles.infoCol}>
-            <h1 className={styles.title}>{work.title}</h1>
+            <div className={styles.titleRow}>
+              <h1 className={styles.title}>{work.title}</h1>
+              {searchDoc && <FavoriteButton book={searchDoc} />}
+            </div>
 
             {/* First publish date */}
             {work.first_publish_date && (

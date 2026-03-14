@@ -1,0 +1,42 @@
+.page {
+  min-height: 100vh;
+  background-color: #f9fafb;
+  padding: 2rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 0.4rem;
+}
+
+.count {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.empty {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.emptyText {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 0.5rem;
+}
+
+.emptySubtext {
+  font-size: 0.9375rem;
+  color: #6b7280;
+  margin: 0;
+}
