@@ -1,6 +1,8 @@
+import { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { Header } from './components/Header'
+import { useThemeStore } from './store/themeStore'
 import SearchPage from './pages/SearchPage'
 import BookDetailPage from './pages/BookDetailPage'
 import AuthorDetailPage from './pages/AuthorDetailPage'
@@ -9,6 +11,12 @@ import FavoritesPage from './pages/FavoritesPage'
 import NotFoundPage from './pages/NotFoundPage'
 
 export default function App() {
+  const theme = useThemeStore((s) => s.theme)
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+  }, [theme])
+
   return (
     <>
       <Header />

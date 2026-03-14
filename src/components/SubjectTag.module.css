@@ -3,8 +3,8 @@
   padding: 0.25rem 0.625rem;
   font-size: 0.75rem;
   font-weight: 500;
-  color: #4f46e5;
-  background-color: #eef2ff;
+  color: var(--accent-color);
+  background-color: var(--accent-soft);
   border-radius: 9999px;
   white-space: nowrap;
   text-decoration: none;
@@ -12,6 +12,6 @@
 }
 
 .tag:hover {
-  background-color: #4f46e5;
+  background-color: var(--accent-color);
   color: #fff;
 }

@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  background-color: #f9fafb;
+  background-color: var(--bg-secondary);
   padding: 2rem 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -9,7 +9,7 @@
 .backLink {
   display: inline-block;
   margin-bottom: 1.5rem;
-  color: #4f46e5;
+  color: var(--accent-color);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
@@ -30,21 +30,21 @@
 .title {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   margin: 0 0 0.4rem;
   text-transform: capitalize;
 }
 
 .count {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--text-muted);
   margin: 0;
 }
 
 .countSkeleton {
   width: 120px;
   height: 0.875rem;
-  background-color: #e5e7eb;
+  background-color: var(--skeleton-bg);
   border-radius: 4px;
   animation: pulse 1.5s ease-in-out infinite;
 }
@@ -62,7 +62,7 @@
 }
 
 .status {
-  color: #6b7280;
+  color: var(--text-muted);
   font-size: 1rem;
   margin-top: 3rem;
   text-align: center;
