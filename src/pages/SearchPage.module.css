@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  background-color: #f9fafb;
+  background-color: var(--bg-secondary);
   padding: 2rem 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -17,7 +17,7 @@
 .title {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   margin: 0;
 }
 
@@ -41,20 +41,20 @@
 
 .count {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--text-muted);
   margin: 0;
 }
 
 .status {
   text-align: center;
-  color: #6b7280;
+  color: var(--text-muted);
   margin-top: 3rem;
   font-size: 1rem;
 }
 
 .hint {
   text-align: center;
-  color: #9ca3af;
+  color: var(--text-muted);
   margin-top: 4rem;
   font-size: 1rem;
 }

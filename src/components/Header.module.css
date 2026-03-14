@@ -1,6 +1,6 @@
 .header {
-  background: #fff;
-  border-bottom: 1px solid #e5e7eb;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
   z-index: 50;
@@ -20,10 +20,16 @@
   text-decoration: none;
   font-size: 1.25rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
 .nav {
@@ -35,14 +41,14 @@
   text-decoration: none;
   font-size: 0.9375rem;
   font-weight: 500;
-  color: #6b7280;
+  color: var(--text-muted);
   transition: color 0.2s;
 }
 
 .link:hover {
-  color: #4f46e5;
+  color: var(--accent-color);
 }
 
 .link.active {
-  color: #4f46e5;
+  color: var(--accent-color);
 }

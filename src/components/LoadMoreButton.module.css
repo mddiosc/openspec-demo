@@ -8,17 +8,17 @@
   padding: 0.65rem 2rem;
   font-size: 0.9375rem;
   font-weight: 500;
-  color: #4f46e5;
-  background-color: #fff;
-  border: 2px solid #4f46e5;
+  color: var(--accent-color);
+  background-color: var(--bg-primary);
+  border: 2px solid var(--accent-color);
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
   min-width: 140px;
 }
 
 .button:hover:not(:disabled) {
-  background-color: #4f46e5;
+  background-color: var(--accent-color);
   color: #fff;
 }
 

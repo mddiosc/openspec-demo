@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import { ThemeToggle } from './ThemeToggle'
 import styles from './Header.module.css'
 
 export function Header() {
@@ -8,24 +9,27 @@ export function Header() {
         <NavLink to="/" className={styles.logo}>
           📚 <span>Explorer</span>
         </NavLink>
-        <nav className={styles.nav}>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `${styles.link} ${isActive ? styles.active : ''}`
-            }
-          >
-            Search
-          </NavLink>
-          <NavLink
-            to="/favorites"
-            className={({ isActive }) =>
-              `${styles.link} ${isActive ? styles.active : ''}`
-            }
-          >
-            Favorites
-          </NavLink>
-        </nav>
+        <div className={styles.actions}>
+          <nav className={styles.nav}>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `${styles.link} ${isActive ? styles.active : ''}`
+              }
+            >
+              Search
+            </NavLink>
+            <NavLink
+              to="/favorites"
+              className={({ isActive }) =>
+                `${styles.link} ${isActive ? styles.active : ''}`
+              }
+            >
+              Favorites
+            </NavLink>
+          </nav>
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   )

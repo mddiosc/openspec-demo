@@ -6,22 +6,22 @@
 
 .label {
   font-size: 0.8rem;
-  color: #6b7280;
+  color: var(--text-muted);
   white-space: nowrap;
 }
 
 .select {
   font-size: 0.8rem;
-  color: #111827;
-  background-color: #fff;
-  border: 1px solid #d1d5db;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
   border-radius: 5px;
   padding: 0.25rem 0.5rem;
   cursor: pointer;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, background-color 0.2s, color 0.2s;
 }
 
 .select:focus {
-  border-color: #4f46e5;
+  border-color: var(--accent-color);
 }

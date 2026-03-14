@@ -1,17 +1,17 @@
 .card {
   display: flex;
   flex-direction: column;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   overflow: hidden;
-  background: #fff;
+  background: var(--card-bg);
   height: 100%;
 }
 
 .cover {
   width: 100%;
   aspect-ratio: 2 / 3;
-  background-color: #f3f4f6;
+  background-color: var(--bg-secondary);
   flex-shrink: 0;
 }
 

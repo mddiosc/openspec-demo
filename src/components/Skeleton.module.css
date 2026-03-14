@@ -1,5 +1,5 @@
 .skeleton {
-  background-color: #e5e7eb;
+  background-color: var(--skeleton-bg);
   position: relative;
   overflow: hidden;
   animation: pulse 1.5s ease-in-out infinite;

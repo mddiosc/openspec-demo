@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  background-color: #f9fafb;
+  background-color: var(--bg-secondary);
   padding: 2rem 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -9,7 +9,7 @@
 .backLink {
   display: inline-block;
   margin-bottom: 1.5rem;
-  color: #4f46e5;
+  color: var(--accent-color);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
@@ -40,7 +40,7 @@
 /* Photo column */
 .photoCol {
   position: sticky;
-  top: 2rem;
+  top: 5rem;
 }
 
 .photo {
@@ -53,13 +53,13 @@
 .photoPlaceholder {
   width: 100%;
   aspect-ratio: 3 / 4;
-  background-color: #e5e7eb;
+  background-color: var(--border-color);
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.8rem;
-  color: #9ca3af;
+  color: var(--text-muted);
   text-align: center;
   padding: 1rem;
 }
@@ -73,20 +73,20 @@
 .name {
   font-size: 2rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   margin: 0 0 0.4rem;
 }
 
 .dates {
   font-size: 0.9rem;
-  color: #6b7280;
+  color: var(--text-muted);
   margin: 0 0 1.5rem;
 }
 
 .section {
   margin-top: 1.5rem;
   padding-top: 1.5rem;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border-color);
 }
 
 .sectionTitle {
@@ -94,27 +94,27 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #6b7280;
+  color: var(--text-muted);
   margin: 0 0 0.75rem;
 }
 
 .bio {
   font-size: 0.9375rem;
-  color: #374151;
+  color: var(--text-secondary);
   line-height: 1.7;
   margin: 0;
 }
 
 /* Works section */
 .worksSection {
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border-color);
   padding-top: 2rem;
 }
 
 .worksTitle {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   margin: 0 0 1.25rem;
 }
 
@@ -128,7 +128,7 @@
 }
 
 .status {
-  color: #6b7280;
+  color: var(--text-muted);
   font-size: 0.9rem;
 }
 

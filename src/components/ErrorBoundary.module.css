@@ -3,15 +3,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f9fafb;
+  background-color: var(--bg-secondary);
   padding: 2rem;
 }
 
 .box {
   max-width: 480px;
   width: 100%;
-  background: #fff;
-  border: 1px solid #e5e7eb;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 2.5rem;
   text-align: center;
@@ -20,13 +20,13 @@
 .title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   margin: 0 0 0.75rem;
 }
 
 .message {
   font-size: 0.9rem;
-  color: #6b7280;
+  color: var(--text-muted);
   margin: 0 0 2rem;
   line-height: 1.6;
 }
@@ -43,7 +43,7 @@
   font-size: 0.9375rem;
   font-weight: 500;
   color: #fff;
-  background-color: #4f46e5;
+  background-color: var(--accent-color);
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -52,12 +52,12 @@
 }
 
 .retryButton:hover {
-  background-color: #4338ca;
+  background-color: var(--accent-hover);
 }
 
 .homeLink {
   font-size: 0.875rem;
-  color: #4f46e5;
+  color: var(--accent-color);
   text-decoration: none;
 }
 

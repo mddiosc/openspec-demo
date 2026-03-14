@@ -1,6 +1,6 @@
 .button {
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid #e5e7eb;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
   border-radius: 50%;
   width: 36px;
   height: 36px;
@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #6b7280;
+  color: var(--text-muted);
   transition: all 0.2s;
   padding: 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -16,14 +16,14 @@
 
 .button:hover {
   transform: scale(1.1);
-  border-color: #f43f5e;
-  color: #f43f5e;
+  border-color: var(--favorite-color);
+  color: var(--favorite-color);
 }
 
 .button.active {
-  color: #f43f5e;
-  border-color: #f43f5e;
-  background: #fff;
+  color: var(--favorite-color);
+  border-color: var(--favorite-color);
+  background: var(--bg-primary);
 }
 
 .icon {
