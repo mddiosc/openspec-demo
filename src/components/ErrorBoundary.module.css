@@ -1,0 +1,66 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9fafb;
+  padding: 2rem;
+}
+
+.box {
+  max-width: 480px;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 0.75rem;
+}
+
+.message {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0 0 2rem;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.retryButton {
+  padding: 0.6rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #fff;
+  background-color: #4f46e5;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+}
+
+.retryButton:hover {
+  background-color: #4338ca;
+}
+
+.homeLink {
+  font-size: 0.875rem;
+  color: #4f46e5;
+  text-decoration: none;
+}
+
+.homeLink:hover {
+  text-decoration: underline;
+}
