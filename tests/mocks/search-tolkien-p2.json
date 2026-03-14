@@ -1,0 +1,25 @@
+{
+  "numFound": 100,
+  "start": 20,
+  "numFoundExact": true,
+  "docs": [
+    {
+      "key": "/works/OL27517W",
+      "title": "Farmer Giles of Ham",
+      "author_name": ["J.R.R. Tolkien"],
+      "author_key": ["OL26320A"],
+      "cover_i": null,
+      "first_publish_year": 1949,
+      "edition_count": 20
+    },
+    {
+      "key": "/works/OL27512W",
+      "title": "Tree and Leaf",
+      "author_name": ["J.R.R. Tolkien"],
+      "author_key": ["OL26320A"],
+      "cover_i": null,
+      "first_publish_year": 1964,
+      "edition_count": 15
+    }
+  ]
+}
