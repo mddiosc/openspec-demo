@@ -1,0 +1,12 @@
+node_modules
+dist
+.git
+.gitignore
+.github
+.claude
+.gemini
+tests
+test-results
+playwright.config.ts
+*.md
+openspec
